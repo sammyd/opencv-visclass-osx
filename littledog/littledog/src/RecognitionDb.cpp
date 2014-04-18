@@ -2113,7 +2113,7 @@ void CRecognitionDb::CreateColorHist(
   const Mat& Mask)
 {
   // Initialize histogram settings
-  int HistSize[] = {Bins};
+  int HistSize[] = {static_cast<int>(Bins)};
   float Range[] = {0, 256}; //{0, 256} = 0 to 255
   const float *Ranges[] = {Range};
   int ChanB[] = {0};
@@ -2384,8 +2384,8 @@ void CRecognitionDb::GenSetupSummaryLog()
 
   Os << "<h3>Entries</h3>\n";
   GenHtmlTableHeader(Os, 1, 3, 2);
-  GenHtmlTableLine(Os, "<b>Entries</b>", mEntries.size(), 3);
-  GenHtmlTableLine(Os, "<b>Classes</b>", mLabelToId.size(), 3);
+  GenHtmlTableLine(Os, "<b>Entries</b>", (unsigned)mEntries.size(), 3);
+  GenHtmlTableLine(Os, "<b>Classes</b>", (unsigned)mLabelToId.size(), 3);
   GenHtmlTableFooter(Os);
 
   // Example entry
@@ -3107,7 +3107,7 @@ void CRecognitionDb::ReadEntryElement(TiXmlElement* pEntry)
     {
       Id = it->second;
     }
-    mEntries.push_back(CRecognitionEntry(ImagePath.GetName().c_str(), Id));
+    mEntries.push_back(CRecognitionEntry(ImagePath.GetName().ToStdString(), Id));
   }
   else
   {
