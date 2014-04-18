@@ -177,7 +177,7 @@ void DrawHistogram(Mat& Hist, Mat& HistImage, Scalar Color,
   Mat HistLayer = Mat(HistImage.size(), CV_8UC3, Scalar(0));
 
   // Draw the bins
-  unsigned binValue = 0;
+  //unsigned binValue = 0;
 
   switch(Hist.type())
   {

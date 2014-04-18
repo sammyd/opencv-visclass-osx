@@ -114,7 +114,7 @@ int main(void)
   if (ImgV)
   {
     // Generate color histogram for the current image
-    CvSize HistSize = cvSize(2*HIST_EDGE + 3*HIST_BINS, 2*HIST_EDGE + HIST_HEIGHT);
+    //CvSize HistSize = cvSize(2*HIST_EDGE + 3*HIST_BINS, 2*HIST_EDGE + HIST_HEIGHT);
     IplImage *HistImgV = cvCreateImage(HistSize , IPL_DEPTH_8U, 3);
 
     // Draw the histogram background and labels
@@ -161,7 +161,7 @@ int main(void)
   if (ImgBGR)
   {
     // Generate color histogram for the current image
-    CvSize HistSize = cvSize(2*HIST_EDGE + 3*HIST_BINS, 2*HIST_EDGE + HIST_HEIGHT);
+    //CvSize HistSize = cvSize(2*HIST_EDGE + 3*HIST_BINS, 2*HIST_EDGE + HIST_HEIGHT);
     IplImage *HistImgBGR = cvCreateImage(HistSize, IPL_DEPTH_8U, 3);
 
     // Draw the histogram background and labels
@@ -224,7 +224,7 @@ int main(void)
     NormalizeClipImageBGR(ImgLowContrastBGR, ImgLowContrastBGRNorm);
 
     // Generate color histogram for the current image
-    CvSize HistSize = cvSize(2*HIST_EDGE + 3*HIST_BINS, 2*HIST_EDGE + HIST_HEIGHT);
+    //CvSize HistSize = cvSize(2*HIST_EDGE + 3*HIST_BINS, 2*HIST_EDGE + HIST_HEIGHT);
     IplImage *HistImgBGR     = cvCreateImage(HistSize, IPL_DEPTH_8U, 3);
     IplImage *HistImgBGRNorm = cvCreateImage(HistSize, IPL_DEPTH_8U, 3);
 
