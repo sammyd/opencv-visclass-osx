@@ -389,6 +389,7 @@ void CRecognitionDb::ReadFeaturesElement(TiXmlElement* pFeatures)
       mpSurfParams->nOctaveLayers);
 
     mpDescriptorExtractor = new SurfDescriptorExtractor(
+      mpSurfParams->hessianThreshold,
       mpSurfParams->nOctaves,
       mpSurfParams->nOctaveLayers,
       mSurfExtended);
@@ -848,7 +849,7 @@ bool CRecognitionDb::PopulateDictionary(wxTimeSpan& DictionaryTime, wxTimeSpan& 
     TermCrit,
     Attempts,
     KMEANS_PP_CENTERS,
-    mpDictionary);
+    *mpDictionary);
 
   // End dictionary timer
   DictionaryTime.Add(wxDateTime::UNow() - StartDictionaryTime);

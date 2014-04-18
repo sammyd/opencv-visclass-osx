@@ -90,7 +90,7 @@ bool CRecognitionEntry::GenerateFeaturesSurfAdjuster(
 
   const double MaxAllowableThreshold = 15000;
   const double MinAllowableThreshold = 1;
-  const double InitialThreshold = Threshold;
+  //const double InitialThreshold = Threshold;
 
   for (int i = 0; i < (int)AdjusterIter; i++)
   {
