@@ -156,9 +156,9 @@ class CRecognitionDb
     wxFileName GetImageFileName(unsigned i) const;
 
     // Given a binary input stream load a stored dictionary
-    bool LoadDictionary(ifstream& Is);
+    bool LoadDictionary(std::ifstream& Is);
     // Write the current dictionary to a binary output stream
-    bool SaveDictionary(ofstream& Os);
+    bool SaveDictionary(std::ofstream& Os);
 
   private:
 
@@ -310,20 +310,20 @@ class CRecognitionDb
       const CRecognitionDb& Db);
 
     // Log html generation helpter functions
-    void GenHtmlHeader(ostream& Os, string Title);
-    void GenHtmlFooter(ostream& Os);
-    void GenHtmlTableHeader(ostream& Os, unsigned Padding, unsigned Spacing, unsigned Indent=0);
-    void GenHtmlTableFooter(ostream& Os, unsigned Indent=0);
-    void GenHtmlTableRowBeg(ostream& Os, unsigned Indent=0);
-    void GenHtmlTableRowEnd(ostream& Os, unsigned Indent=0);
-    void GenHtmlTableDivBeg(ostream& Os, unsigned Indent=0);
-    void GenHtmlTableDivEnd(ostream& Os, unsigned Indent=0);
-    void GenHtmlIndent(ostream& Os, unsigned Indent=0);
-    void GenHtmlTableLine(ostream& Os, const std::vector<std::string>& Values, unsigned Indent=0);
-    void GenHtmlTableLine(ostream& Os, std::string Name , std::string Value , unsigned Indent=0);
-    void GenHtmlTableLine(ostream& Os, std::string Name , unsigned Value , unsigned Indent=0);
-    void GenHtmlTableLine(ostream& Os, std::string Name , double Value , unsigned Indent=0);
-    void GenHtmlTableLine(ostream& Os, std::string Name , bool Value , unsigned Indent=0);
+    void GenHtmlHeader(std::ostream& Os, cv::string Title);
+    void GenHtmlFooter(std::ostream& Os);
+    void GenHtmlTableHeader(std::ostream& Os, unsigned Padding, unsigned Spacing, unsigned Indent=0);
+    void GenHtmlTableFooter(std::ostream& Os, unsigned Indent=0);
+    void GenHtmlTableRowBeg(std::ostream& Os, unsigned Indent=0);
+    void GenHtmlTableRowEnd(std::ostream& Os, unsigned Indent=0);
+    void GenHtmlTableDivBeg(std::ostream& Os, unsigned Indent=0);
+    void GenHtmlTableDivEnd(std::ostream& Os, unsigned Indent=0);
+    void GenHtmlIndent(std::ostream& Os, unsigned Indent=0);
+    void GenHtmlTableLine(std::ostream& Os, const std::vector<std::string>& Values, unsigned Indent=0);
+    void GenHtmlTableLine(std::ostream& Os, std::string Name , std::string Value , unsigned Indent=0);
+    void GenHtmlTableLine(std::ostream& Os, std::string Name , unsigned Value , unsigned Indent=0);
+    void GenHtmlTableLine(std::ostream& Os, std::string Name , double Value , unsigned Indent=0);
+    void GenHtmlTableLine(std::ostream& Os, std::string Name , bool Value , unsigned Indent=0);
 
 };
 #endif //end #ifndef RECOGNITION_DB_H

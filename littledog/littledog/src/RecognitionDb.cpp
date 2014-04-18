@@ -31,6 +31,7 @@
 //OpenCV
 #include <highgui.h>
 #include <ml.h>
+#include <opencv2/nonfree/nonfree.hpp>
 
 // Other
 #include <histLib.h>
@@ -627,7 +628,7 @@ bool CRecognitionDb::PopulateFeatures(wxTimeSpan& PopulateTime)
       }
 
       CRecognitionEntry& Entry = mEntries.at(i);
-      Mat Image = cv::imread(mImageFileNames.at(i).GetFullPath().c_str());
+      Mat Image = cv::imread(mImageFileNames.at(i).GetFullPath().ToStdString());
       Mat ImageNorm;
       Mat& ImageRef = Image;
       int imageHeight = Image.size().height;
@@ -830,7 +831,7 @@ bool CRecognitionDb::PopulateDictionary(wxTimeSpan& DictionaryTime, wxTimeSpan& 
   TermCriteria TermCrit = TermCriteria(TermCriteria::MAX_ITER, mWordKMeansIter, 0.0f);
 
   // Create the dictionary (k-means clustering)
-  kmeans(
+  cv::kmeans(
     AllDescriptors,
     mWordCount,
     *mpLabels,
@@ -925,7 +926,7 @@ bool CRecognitionDb::PopulateColorHistograms(wxTimeSpan& Time)
     }
     else
     {
-      Mat Image = cv::imread(mImageFileNames.at(i).GetFullPath().c_str());
+      Mat Image = cv::imread(mImageFileNames.at(i).GetFullPath().ToStdString());
       Entry.GenerateColorHist(Image, mColorHistogramBins);
 
        // Logging
@@ -963,7 +964,7 @@ bool CRecognitionDb::PopulateColorHistograms(wxTimeSpan& Time)
         DrawHistogram(HistG, HistImageBGR, GREEN_N, Bins, Edge, Height);
         DrawHistogram(HistR, HistImageBGR, RED_N,   Bins, Edge, Height);
 
-        imwrite(HistImageFileName.GetFullPath().c_str(), HistImageBGR);
+        cv::imwrite(HistImageFileName.GetFullPath().ToStdString(), HistImageBGR);
       }
 
       // Generate cached color histogram
@@ -1410,7 +1411,7 @@ void CRecognitionDb::GenClassifyDbLog(
   Os.open(LogName.GetFullPath().c_str());
   if (!Os.is_open()) return;
 
-  GenHtmlHeader(Os, LogName.GetName().c_str());
+  GenHtmlHeader(Os, LogName.GetName().ToStdString());
 
   Os << "\t<b>Summary</b>\n";
 
@@ -1432,7 +1433,7 @@ void CRecognitionDb::GenClassifyDbLog(
 
     string Accuracy = wxString::Format("%0.2f %% (%d/%d)",
       100.0*(double)ThisClassMatchCount/(double)ThisClassTotalCount,
-      ThisClassMatchCount, ThisClassTotalCount);
+      ThisClassMatchCount, ThisClassTotalCount).ToStdString();
 
     GenHtmlTableLine(Os, Class, Accuracy, 3);
   }
@@ -1442,7 +1443,7 @@ void CRecognitionDb::GenClassifyDbLog(
   // Print the total classification accuracy
   string Accuracy = wxString::Format("<b>%0.2f %% (%d/%d) </b>",
     100.0*(double)TotalMatchCount/(double)EntryCount,
-    TotalMatchCount, EntryCount);
+    TotalMatchCount, EntryCount).ToStdString();
 
   GenHtmlTableLine(Os, "<b>Total</b>", Accuracy, 3);
   GenHtmlTableFooter(Os, 2);
@@ -1560,7 +1561,7 @@ bool CRecognitionDb::ClassifyEntrySlidingWindow(
   }
 
   Mat Image;
-  Image = imread(ImageFileName.GetFullPath().c_str());
+    Image = cv::imread(ImageFileName.GetFullPath().ToStdString());
 
   const int Rows = Image.rows;
   const int Cols = Image.cols;
@@ -1702,7 +1703,7 @@ bool CRecognitionDb::ClassifyEntrySlidingWindow(
     OutputImage = OutputImage + ChannelsMerged;
   }
 
-  string OutputImageName = ImageFileName.GetName() + ".jpg";
+  string OutputImageName = ImageFileName.GetName().ToStdString() + ".jpg";
 
   OutputImage = 0.25*OutputImage + 0.75*Image;
   imwrite(OutputImageName.c_str(), OutputImage);
@@ -1802,7 +1803,7 @@ void CRecognitionDb::GenImageSquares(
   {
 
     wxFileName ImageName(AllImages[idx]);
-    Mat ImageOrig = imread(ImageName.GetFullPath().c_str());
+    Mat ImageOrig = cv::imread(ImageName.GetFullPath().ToStdString());
     Mat Image;
 
     resize(ImageOrig, Image, Size(),Resize,Resize);
@@ -1830,7 +1831,7 @@ void CRecognitionDb::GenImageSquares(
         Mat SubImage = Mat(Image, Rect(Point(MinY, MinX), Point(MaxY, MaxX)));
 
         wxString Name = ImageName.GetName() + wxString::Format(".%d.%d.jpg", i, j);
-        imwrite(Name.c_str(), SubImage);
+        cv::imwrite(Name.ToStdString(), SubImage);
       }
     }
   }
@@ -1925,13 +1926,13 @@ void CRecognitionDb::GenClassifyDbSummaryCsv(
     TotalMatchCount += ThisClassMatchCount;
 
     string Accuracy = wxString::Format("%0.2f %%",
-      100.0*(double)ThisClassMatchCount/(double)ThisClassTotalCount);
+      100.0*(double)ThisClassMatchCount/(double)ThisClassTotalCount).ToStdString();
 
     Os << " " << Accuracy << ",";
   }
 
   string Accuracy = wxString::Format("%0.2f %%",
-      100.0*(double)TotalMatchCount/(double)TotalTruthCount);
+      100.0*(double)TotalMatchCount/(double)TotalTruthCount).ToStdString();
   Os << " " << Accuracy << "\n";
 }
 
@@ -1967,7 +1968,7 @@ void CRecognitionDb::WriteHistogramImage(wxFileName& SaveFile, const Mat& Values
     Edge,
     Height);
 
-  imwrite(SaveFile.GetFullPath().c_str(), Image);
+  cv::imwrite(SaveFile.GetFullPath().ToStdString(), Image);
 }
 
 //=================================================================================================
@@ -2203,7 +2204,7 @@ bool CRecognitionDb::FillWordHist(CRecognitionEntry& Entry)
 //=================================================================================================
 void CRecognitionDb::GetContours(unsigned ImageIndex)
 {
-  Mat Image = imread(mImageFileNames.at(ImageIndex).GetFullPath().c_str());
+  Mat Image = cv::imread(mImageFileNames.at(ImageIndex).GetFullPath().ToStdString());
   Mat Edges;
 
   cvtColor(Image, Edges, CV_BGR2GRAY);
@@ -2212,7 +2213,7 @@ void CRecognitionDb::GetContours(unsigned ImageIndex)
 
   //wxFileName OutputFileName = mDbDirs.mLogDir;
   wxString EdgesName = mImageFileNames.at(ImageIndex).GetName() + ".contour.jpg";
-  imwrite(EdgesName.c_str(), Edges);
+  cv::imwrite(EdgesName.ToStdString(), Edges);
 
  // The dimensions of the sliding window
   const int WindowHeight = 64;
@@ -2251,7 +2252,7 @@ void CRecognitionDb::GetContours(unsigned ImageIndex)
       const int MinY = j-WindowWidth;
       const int MaxY = j;
 
-      Mat& OutputRoi = Mat(Output, Rect(Point(MinY, MinX), Point(MaxY, MaxX)));
+      Mat OutputRoi = Mat(Output, Rect(Point(MinY, MinX), Point(MaxY, MaxX)));
 
       if (Sums[k] > SumAvg)
       {
@@ -2266,7 +2267,7 @@ void CRecognitionDb::GetContours(unsigned ImageIndex)
   }
 
   wxString OutputName = mImageFileNames.at(ImageIndex).GetName() + ".avg.jpg";
-  imwrite(OutputName.c_str(), Output);
+  cv::imwrite(OutputName.ToStdString(), Output);
 }
 
 //=================================================================================================
@@ -2566,7 +2567,7 @@ void CRecognitionDb::GenFeatureLogImage(
   LogImageName.SetName(Entry.GetName() + ".Features");
   LogImageName.SetExt("png");
 
-  imwrite(LogImageName.GetFullPath().c_str(), LogImage);
+  cv::imwrite(LogImageName.GetFullPath().ToStdString(), LogImage);
 }
 
 //=================================================================================================
@@ -2595,8 +2596,8 @@ void CRecognitionDb::GenFeatureLogHtml(const CRecognitionEntry& Entry, wxTimeSpa
 
   // Images
   GenHtmlTableHeader(Os, 100, 1, 2);
-  string ImageA = "<img src='../../" + OrignialImageName.GetFullPath() + "'>";
-  string ImageB = "<img src='" + LogImageName.GetFullName() + "'>";
+  string ImageA = "<img src='../../" + OrignialImageName.GetFullPath().ToStdString() + "'>";
+  string ImageB = "<img src='" + LogImageName.GetFullName().ToStdString() + "'>";
   GenHtmlTableLine(Os, ImageA, ImageB, 3);
   GenHtmlTableLine(Os, "<b>Original</b>" , "<b>Keypoints</b>", 3);
 
@@ -2611,7 +2612,7 @@ void CRecognitionDb::GenFeatureLogHtml(const CRecognitionEntry& Entry, wxTimeSpa
   unsigned SizeInBytes = Entry.GetKeyPointCount()*DescriptorLength*sizeof(float);
   GenHtmlTableLine(Os, "<b>Size (Bytes)</b>", SizeInBytes, 3);
 
-  string GenTimeString = GenTime.Format("%M:%S:%l");
+  string GenTimeString = GenTime.Format("%M:%S:%l").ToStdString();
   GenHtmlTableLine(Os, "<b>Generation time</b>", GenTimeString , 3);
 
   GenHtmlTableFooter(Os);
@@ -2646,7 +2647,7 @@ void CRecognitionDb::GenWordLogHtml()
     // Images
     GenHtmlTableHeader(Os, 1, 1, 2);
 
-    string LogImageHtml = "<img src='" + LogImageName.GetFullName() + "'>";
+    string LogImageHtml = "<img src='" + LogImageName.GetFullName().ToStdString() + "'>";
     GenHtmlTableLine(Os, LogImageHtml, "", 3);
     GenHtmlTableLine(Os, "<b>Word Histogram</b>" , "", 3);
 
@@ -2662,7 +2663,7 @@ void CRecognitionDb::GenWordLogHtml()
     for (unsigned i = 0; i < (unsigned)WordHist.cols; i++)
     {
       wxString Name = wxString::Format("<b>%d</b>", i);
-      GenHtmlTableLine(Os, Name.c_str(), (unsigned)WordHist.at<int>(0,i), 3);
+      GenHtmlTableLine(Os, Name.ToStdString(), (unsigned)WordHist.at<int>(0,i), 3);
     }
 
     GenHtmlTableFooter(Os);

@@ -4,6 +4,8 @@
 #include <ostream>
 #include <fstream>
 
+#include <opencv2/nonfree/nonfree.hpp>
+
 using namespace cv;
 using namespace std;
 
@@ -92,7 +94,7 @@ bool CRecognitionEntry::GenerateFeaturesSurfAdjuster(
 
   for (int i = 0; i < (int)AdjusterIter; i++)
   {
-    SurfFeatureDetector FeatDet =
+      SurfFeatureDetector FeatDet =
       SurfFeatureDetector(Threshold, mpSurfParams->nOctaves, mpSurfParams->nOctaveLayers);
     mKeyPoints.clear();
     FeatDet.detect(Image, mKeyPoints);
@@ -209,7 +211,7 @@ bool CRecognitionEntry::GenerateFeaturesGrid(
       CRecognitionEntry Entry = CRecognitionEntry("Entry", 0);
 
       //cout << "MinX: " << MinX << " MinY: " << MinY << " MaxX " << MaxX << " MaxY " << MaxY << "\n";
-      Mat& Roi = Mat(Image, Rect(Point(MinX, MinY), Point(MaxX, MaxY)));
+      Mat Roi = Mat(Image, Rect(Point(MinX, MinY), Point(MaxX, MaxY)));
       //cout << "ROI rows: " << Roi.rows << " ROI cols: " << Roi.cols << "\n";
 
       Entry.GenerateFeaturesSurfAdjuster(
@@ -357,7 +359,7 @@ const Mat& CRecognitionEntry::GetColorHist() const
 void CRecognitionEntry::GenerateColorHist(const Mat& ImageBGR, unsigned Bins)
 {
   // Initialize histogram settings
-  int HistSize[] = {Bins};
+  int HistSize[] = {static_cast<int>(Bins)};
   float Range[] = {0, 256}; //{0, 256} = 0 to 255
   const float *Ranges[] = {Range};
   int ChanB[] = {0};

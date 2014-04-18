@@ -56,11 +56,11 @@ class CRecognitionEntry
     void InitWordHist(unsigned Size);
     void NormalizeWordHist(unsigned MaxValue);
 
-    bool LoadFeatures(ifstream& Is);
-    bool SaveFeatures(ofstream& Os);
+    bool LoadFeatures(std::ifstream& Is);
+    bool SaveFeatures(std::ofstream& Os);
 
-    bool SaveColorHistogram(ofstream& Os);
-    bool LoadColorHistogram(ifstream& Is, int ExpectedCols);
+    bool SaveColorHistogram(std::ofstream& Os);
+    bool LoadColorHistogram(std::ifstream& Is, int ExpectedCols);
 
   private:
     std::string mName;

@@ -33,7 +33,7 @@
 #include <sstream>
 
 // Visual Recogntion Lib
-#include <RecognitionDb.h>
+#include "RecognitionDb.h"
 
 // wxWidgets
 #include <wx/wx.h>
