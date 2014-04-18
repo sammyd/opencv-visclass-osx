@@ -66,9 +66,11 @@ CRecognitionDb::CRecognitionDb()
    mGridStep(512),
    mpFeatureDetector(0),
    mpDescriptorExtractor(0),
+/*
    mpSiftCommonParams(0),
    mpSiftDetectorParams(0),
    mpSiftDescriptorParams(0),
+*/
    mpSurfParams(0),
    mSurfExtended(false),
    mpDictionary(0),
@@ -165,9 +167,11 @@ bool CRecognitionDb::OnInit(SDirs Dirs, string SetupFileName)
   delete mpDictionary;
   delete mpLabels;
   delete mpFeatureDetector;
+    /*
   delete mpSiftCommonParams;
   delete mpSiftDetectorParams;
   delete mpSiftDescriptorParams;
+*/
   delete mpSurfParams;
   delete mpWordClassifierParams;
   delete mpWordClassifier;
@@ -177,9 +181,9 @@ bool CRecognitionDb::OnInit(SDirs Dirs, string SetupFileName)
   mpDictionary = 0;
   mpLabels = 0;
   mpFeatureDetector = 0;
-  mpSiftCommonParams = 0;
-  mpSiftDetectorParams = 0;
-  mpSiftDescriptorParams = 0;
+//  mpSiftCommonParams = 0;
+//  mpSiftDetectorParams = 0;
+//  mpSiftDescriptorParams = 0;
   mpSurfParams = 0;
   mpWordClassifierParams = 0;
   mpWordClassifier = 0;
@@ -356,6 +360,7 @@ void CRecognitionDb::ReadFeaturesElement(TiXmlElement* pFeatures)
 
   FeatureType = ReadTypeAttribute(pFeatures);
 
+    /*
   if (FeatureType == "SIFT")
   {
     mFeatureType = eSIFT;
@@ -370,7 +375,9 @@ void CRecognitionDb::ReadFeaturesElement(TiXmlElement* pFeatures)
       *mpSiftDescriptorParams,
       *mpSiftCommonParams);
   }
-  else if (FeatureType == "SURF")
+  else
+      */
+  if (FeatureType == "SURF")
   {
     mFeatureType = eSURF;
 
@@ -390,6 +397,8 @@ void CRecognitionDb::ReadFeaturesElement(TiXmlElement* pFeatures)
 
 //=================================================================================================
 //=================================================================================================
+
+/*
 void CRecognitionDb::ReadSiftAttributes(TiXmlElement* pSift)
 {
   // Default SIFT parameters
@@ -471,6 +480,7 @@ void CRecognitionDb::ReadSiftAttributes(TiXmlElement* pSift)
   mpSiftDetectorParams = new SIFT::DetectorParams(Threshold, EdgeThreshold);
   mpSiftDescriptorParams = new SIFT::DescriptorParams(Magnification, IsNormal, RecalculateAnlges);
 }
+ */
 
 //=================================================================================================
 //=================================================================================================
@@ -2415,6 +2425,7 @@ void CRecognitionDb::GenSetupSummaryLog()
   switch(mFeatureType)
   {
     case eSIFT:
+      /*
       GenHtmlTableLine(Os, "<b>Feature Type</b>", "SIFT", 3);
       // Summarize common SIFT parameters
       if (mpSiftCommonParams)
@@ -2451,6 +2462,7 @@ void CRecognitionDb::GenSetupSummaryLog()
       {
         GenHtmlTableLine(Os, "<b>ERROR:</b>", "No SIFT descriptor parameters specified!", 3);
       }
+       */
     break;
     case eSURF:
       GenHtmlTableLine(Os, "<b>Feature Type</b>", "SURF", 3);

@@ -205,11 +205,13 @@ class CRecognitionDb
     cv::FeatureDetector* mpFeatureDetector;
     cv::DescriptorExtractor* mpDescriptorExtractor;
 
+    /*
     // SIFT feature settings
     cv::SIFT::CommonParams* mpSiftCommonParams;
     cv::SIFT::DetectorParams* mpSiftDetectorParams;
     cv::SIFT::DescriptorParams* mpSiftDescriptorParams;
-
+*/
+    
     // SURF features options
     CvSURFParams* mpSurfParams;
     bool mSurfExtended;
