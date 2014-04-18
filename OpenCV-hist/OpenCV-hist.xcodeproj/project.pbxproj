@@ -1,0 +1,256 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		228C310B1900431100A1F4A5 /* histLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228C31091900430B00A1F4A5 /* histLib.cpp */; };
+		228C310C1900431100A1F4A5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228C310A1900430B00A1F4A5 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		228C30FF190042ED00A1F4A5 /* libOpenCV-hist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libOpenCV-hist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		228C31071900430B00A1F4A5 /* histLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = histLib.h; sourceTree = "<group>"; };
+		228C31091900430B00A1F4A5 /* histLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = histLib.cpp; sourceTree = "<group>"; };
+		228C310A1900430B00A1F4A5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		228C30FC190042ED00A1F4A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		228C30F6190042ED00A1F4A5 = {
+			isa = PBXGroup;
+			children = (
+				228C31061900430B00A1F4A5 /* include */,
+				228C31081900430B00A1F4A5 /* src */,
+				228C3100190042ED00A1F4A5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		228C3100190042ED00A1F4A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				228C30FF190042ED00A1F4A5 /* libOpenCV-hist.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		228C31061900430B00A1F4A5 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				228C31071900430B00A1F4A5 /* histLib.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		228C31081900430B00A1F4A5 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				228C31091900430B00A1F4A5 /* histLib.cpp */,
+				228C310A1900430B00A1F4A5 /* main.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		228C30FD190042ED00A1F4A5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		228C30FE190042ED00A1F4A5 /* OpenCV-hist */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 228C3103190042ED00A1F4A5 /* Build configuration list for PBXNativeTarget "OpenCV-hist" */;
+			buildPhases = (
+				228C30FB190042ED00A1F4A5 /* Sources */,
+				228C30FC190042ED00A1F4A5 /* Frameworks */,
+				228C30FD190042ED00A1F4A5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OpenCV-hist";
+			productName = "OpenCV-hist";
+			productReference = 228C30FF190042ED00A1F4A5 /* libOpenCV-hist.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		228C30F7190042ED00A1F4A5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = VisualPutty;
+			};
+			buildConfigurationList = 228C30FA190042ED00A1F4A5 /* Build configuration list for PBXProject "OpenCV-hist" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 228C30F6190042ED00A1F4A5;
+			productRefGroup = 228C3100190042ED00A1F4A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				228C30FE190042ED00A1F4A5 /* OpenCV-hist */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		228C30FB190042ED00A1F4A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				228C310C1900431100A1F4A5 /* main.cpp in Sources */,
+				228C310B1900431100A1F4A5 /* histLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		228C3101190042ED00A1F4A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		228C3102190042ED00A1F4A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		228C3104190042ED00A1F4A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/opencv/2.4.8.2/include,
+					/usr/local/Cellar/opencv/2.4.8.2/include/opencv,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		228C3105190042ED00A1F4A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/opencv/2.4.8.2/include,
+					/usr/local/Cellar/opencv/2.4.8.2/include/opencv,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		228C30FA190042ED00A1F4A5 /* Build configuration list for PBXProject "OpenCV-hist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				228C3101190042ED00A1F4A5 /* Debug */,
+				228C3102190042ED00A1F4A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		228C3103190042ED00A1F4A5 /* Build configuration list for PBXNativeTarget "OpenCV-hist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				228C3104190042ED00A1F4A5 /* Debug */,
+				228C3105190042ED00A1F4A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 228C30F7190042ED00A1F4A5 /* Project object */;
+}
